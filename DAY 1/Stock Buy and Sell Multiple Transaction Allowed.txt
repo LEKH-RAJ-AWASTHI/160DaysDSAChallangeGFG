@@ -1,0 +1,32 @@
+I have difficulty to understand it so I have pasted the code from : https://github.com/Vishal-Ansari/LeetCode-Repo/blob/master/Stock%20Buy%20and%20Sell%20%E2%80%93%20Multiple%20Transaction%20Allowed.cpp
+
+class Solution {
+  public:
+    int maximumProfit(vector<int> &prices) {
+        // code here
+        int n=prices.size();
+        int ans=0;
+        int buy=prices[0];
+        for(int i=0;i<n;i++){
+            if(prices[i]<buy){
+                buy=prices[i];
+            }
+            else{
+                ans+=prices[i]-buy;
+                while(i<n-1){
+                    if(prices[i]<prices[i+1]){
+                        buy=prices[i];
+                        break;
+                    }
+                    else
+                    i++;
+                }
+            }
+        }
+        return ans;
+    }
+};
+
+Help: https://www.youtube.com/watch?v=excAOvwF_Wk
+	https://www.youtube.com/watch?v=34WE6kwq49U
+	https://www.youtube.com/watch?v=2yJywCuuEaU
