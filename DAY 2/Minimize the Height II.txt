@@ -1,0 +1,43 @@
+It is a very interesting problem to solve.
+You have given the heights of anything and you have to find the minimum height of lowest and tallest building after increasing or decreasing the height of that "buildings" by a constant
+
+First I will sort all the elements and make a pivot in that list from which I would decrease in one half and increase in one half by that constant
+Secondly I will repeat that by increasing in one half and decreasing in one half.
+
+After that I have to find the minimum height and maximum height of the buildings after that operation.
+For that I would do 
+Math.max(heighest height - const, heighest height before pivot + const)
+
+Math.min(lowest height + const, lowest height after pivot -const)
+
+Here is the Solution:
+class Solution {
+    int getMinDiff(int[] arr, int k) {
+        // code here
+        int len= arr.length;
+        Arrays.sort(arr);
+        
+        int res= arr[len-1]- arr[0];
+        
+        int lowest= arr[0]+k;
+        int height= arr[len-1]-k;
+        
+        int max=0;
+        int min=0;
+        
+        for(int i=0; i<len-1; i++)
+        {
+            min = Math.min(lowest, arr[i+1]-k);
+            max = Math.max(height, arr[i]+k);
+            
+            if(min>0)
+            {
+                res= Math.min(res, max-min);
+            }
+        }
+        return res;
+    }
+}
+
+
+Help Link:	https://www.youtube.com/watch?v=qUpN9sPfy5A
