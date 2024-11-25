@@ -1,0 +1,25 @@
+Day 4: problem Maximum product subarray
+
+desc: Given an array arr[] that contains positive and negative integers (may contain 0 as well). Find the maximum product that we can get in a subarray of arr.
+
+
+Code: 
+class Solution {
+    // Function to find maximum product subarray
+    int maxProduct(int[] arr) {
+        // code here
+        int prod1 = arr[0],prod2 = arr[0],result = arr[0];
+    
+    for(int i=1;i<arr.length;i++) {
+        int temp = Math.max(arr[i],Math.max(prod1*arr[i],prod2*arr[i]));
+        prod2 = Math.min(arr[i],Math.min(prod1*arr[i],prod2*arr[i]));
+        prod1 = temp;
+        
+        result = Math.max(result,prod1);
+    }
+    return result;
+    }
+}
+
+Help Link: https://takeuforward.org/data-structure/maximum-product-subarray-in-an-array/
+	https://www.youtube.com/watch?v=hnswaLJvr6g
