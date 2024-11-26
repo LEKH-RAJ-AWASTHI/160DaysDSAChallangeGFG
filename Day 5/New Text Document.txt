@@ -1,0 +1,52 @@
+Day 5: Max Circular subarray sum.
+Used Kadane's algo
+first get the max value using kadane algo
+and add another max of inverted array to previous max then we get the value
+
+Inverted array is reversing the sign plus to minus and minus to plus of each element
+
+Idea is to substract the minimum value from the maximum value in the array
+
+Code: class Solution {
+
+    public int circularSubarraySum(int arr[]) {
+
+        // Your code here
+         int len= arr.length;
+         int max_first= maxSubarrSum(arr, len);
+         if(max_first<0)
+            return max_first;
+        
+        int sum=0;
+        for(int i=0; i<len; i++)
+        {
+            sum+=arr[i];
+            arr[i]=-arr[i];
+            
+        }
+        int max_circular = sum+ maxSubarrSum(arr, len);
+        return Math.max(max_first, max_circular);
+    }
+    public int maxSubarrSum(int arr[], int len)
+    {
+        
+    
+         
+         int max= Integer.MIN_VALUE;
+         int sum =0;
+         for(int i=0; i<len; i++)
+         {
+
+             sum= sum+arr[i];
+
+             max= Math.max(max, sum);
+             if(sum<0)
+             {
+                 sum=0;
+
+             }
+         }
+         return max;
+    }
+}
+Help: https://www.youtube.com/watch?v=n4LnSo-ICvU
