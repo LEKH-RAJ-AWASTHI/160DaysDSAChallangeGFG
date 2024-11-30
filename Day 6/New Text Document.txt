@@ -1,0 +1,29 @@
+Day 6: Smallest positive missing number
+
+sorting the array. then find which element is missing 
+class Solution {
+    // Function to find the smallest positive number missing from the array.
+    public int missingNumber(int[] arr) {
+        // Your code here
+
+        int len= arr.length;
+        for(int i=0; i<len; i++)
+        {
+            int curridx= arr[i]-1;
+            while((0<=curridx && curridx<= (len-1)) &&(arr[i] != arr[curridx]))
+            {
+                int temp= arr[i];
+                arr[i]= arr[curridx];
+                arr[curridx]= temp;
+                curridx = arr[i]-1;
+                
+            }
+        }
+        for(int i=0; i<len; i++)
+        {
+            if(arr[i]!= i+1) return i+1;
+        }
+        return len+1;
+      
+    }
+

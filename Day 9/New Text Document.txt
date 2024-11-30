@@ -1,0 +1,39 @@
+Day 9: Anagram
+Anagram is the condition when two strings have same number of characters at same frequency. and Both the characters must have of same length
+Eg. geeks,keegs
+
+To solve this we first check the length of both strings.
+if it is equal move to next part else return false;
+
+now we create and array of integers with 26 size. 26 for alphabet
+
+Here is the code
+
+class Solution {
+    // Function is to check whether two strings are anagram of each other or not.
+    public static boolean areAnagrams(String s1, String s2) {
+
+        // Your code here
+        if(s1.length()!= s2.length())
+        {
+            return false;
+        }
+        int[] chars = new int[26];
+        
+        for(int i=0; i<s1.length(); i++)
+        {
+            chars[s1.charAt(i)-'a']++;
+            chars[s2.charAt(i)-'a']--;
+        }
+        for(int i=0; i<26; i++)
+        {
+            if(chars[i]!=0)
+            {
+                return false;
+            }
+            
+        }
+        return true;
+        
+    }
+}
